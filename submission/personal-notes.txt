@@ -1,35 +1,36 @@
 PHIẾU CÁ NHÂN — DAY 14
-Điền file này, chạy QC vào submission/qc-j01 và submission/qc-practice, commit rồi nộp link repo.
-Không dán ảnh, toạ độ điểm hay nội dung file export vào đây.
 
-Họ tên / mã học viên:
-Object J01 (a/b/c/d theo docs/cases.md) / track ID trong task J01:
-Phiên bản CVAT / overlay đã bật (có/không):
+Họ tên / mã học viên: Vũ Ngọc Huyền / 2A202602323
+Object J01 (a/b/c/d theo docs/cases.md) / track ID trong task J01: J01-d (frame neo 65, ROI [1469, 833, 1826, 1071]) / track ID 0
+Phiên bản CVAT / overlay đã bật (có/không): CVAT 2.76.0 / có (overlay: on, calibration calib-diagnostic.json)
 
 J01 — TRACK LÕI
-Frame fit và lý do:
-L / W / H (m):
-Keyframe quan trọng và lý do:
-Đã bấm F qua đủ frame 0–65 (có/không):
-Đoạn thưa / che khuất / dễ nhầm identity:
+Frame fit và lý do: frame 65 — frame neo, xe gần, cụm điểm rõ, nhìn được ranh giới trên Top/Side/Front
+L / W / H (m): 4.4 / 2.07 / 1.92
+Keyframe quan trọng và lý do: frame 65 (frame fit) và các frame xe dịch tâm/đổi hướng trong đoạn 30–65; đoạn 0–29 chưa rà lại đủ
+Đã bấm F qua đủ frame 0–65 (có/không): có
+Đoạn thưa / che khuất / dễ nhầm identity: frame 0–29, xe J01-d ở gần một xe tải lớn (~6.6 x 2.46 x 3.2 m), hộp bị lẫn sang xe tải ở nhiều frame. Khoảng cách object 10.6–35.7 m.
 
 SELF-QC (từ qc_tracks.csv / qc_flags.csv)
-Lần QC đầu — cờ của track J01 (loại, frame):
+Lần QC đầu — cờ của track J01 (loại, frame): 66 frame, 2 track. Track 0: dimension_drift (L 4.01..6.62, W 2.07..2.46, H 1.92..3.60), orientation_flip ~180 độ ở frame 2,3,4,9,14,17,18,21,24,25,27,29; position_jump 10–39 m ở frame 2,3,4,9,14,16,17,18,21,24,25,27,29. Track 1 (frame 1–29) lỗi tương tự + 2 fragmentation_suspect. Frame 30–65 của track 0 không có cờ.
 Quyết định cho từng cờ (sửa / giữ vì hợp lệ / chưa đủ evidence) và lý do:
-Đã sửa gì sau QC đầu; QC cuối còn cờ nào:
-Nhận xét của bạn cùng cặp và bạn đồng ý/không đồng ý vì sao:
+- position_jump 3.2–3.5 m ở frame liên tiếp (5–8, 10–13, 26, 28): giữ vì hợp lệ, là chuyển động thật của xe.
+- position_jump 10–39 m + orientation_flip + dimension_drift ở frame 0–29: lỗi annotation, hộp bị đặt sang xe tải/lật hướng. Cần sửa: kéo về đúng xe J01-d, xoay cùng hướng, giữ L/W/H 4.4/2.07/1.92.
+- Track 1: track thừa, cần xoá.
+Đã sửa gì sau QC đầu; QC cuối còn cờ nào: chưa sửa do hết thời gian; QC cuối = QC đầu.
+Nhận xét của bạn cùng cặp và bạn đồng ý/không đồng ý vì sao: không có (chưa thực hiện đổi màn hình review)
 
 CAMERA–LIDAR (overlay trên image_1)
-Ca bình thường (frame / quan sát):
-Ca khó (frame / quan sát 2D / quan sát 3D):
-Giả thuyết nguyên nhân (annotation / FOV / occlusion / sparse / nghi calibration / chưa đủ evidence):
-Hành động (sửa / giữ / báo Lab Coach) và lý do:
+Ca bình thường (frame / quan sát): frame 65 / cuboid chiếu bao đúng xe, đầu–đuôi khớp
+Ca khó (frame / quan sát 2D / quan sát 3D): frame 16 / box chiếu lệch khỏi xe J01-d trên ảnh / hộp nằm trên cụm điểm xe tải
+Giả thuyết nguyên nhân (annotation / FOV / occlusion / sparse / nghi calibration / chưa đủ evidence): annotation (hộp đặt nhầm object), không phải calibration vì frame 30–65 khớp
+Hành động (sửa / giữ / báo Lab Coach) và lý do: cần sửa annotation ở frame 0–29; chưa sửa do hết thời gian, đã báo Lab Coach
 
 CASE NGẮN (task practice)
-Case → track ID (ví dụ B01 → 3):
-Case đã xong:
-Case đang dở / chỗ kẹt:
-fragmentation_suspect ở đầu/cuối case đã kiểm là do cách cắt case (có/không):
+Case → track ID (ví dụ B01 → 3): chưa làm
+Case đã xong: chưa có
+Case đang dở / chỗ kẹt: hết thời gian, ưu tiên J01
+fragmentation_suspect ở đầu/cuối case đã kiểm là do cách cắt case (có/không): không áp dụng
 
 THỜI GIAN
-J01 / case ngắn / QC và fusion:
+J01 / case ngắn / QC và fusion: ~85 phút / 0 phút / ~20 phút
